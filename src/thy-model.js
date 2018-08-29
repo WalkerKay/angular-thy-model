@@ -1,34 +1,58 @@
-angular.module("thy.ngModel", [])
-    .directive('thyNgModel', [function () {
+angular.module("angular.thy.model", [])
+    .provider('thyModelProvider', [function () {
+        const _self = this;
+        this.ngZone = null;
+        this.$get = function () {
+            return {
+                getNgZone: function () {
+                    return _self.ngZone;
+                },
+                setNgZoneProvider: function (ngZone) {
+                    _self.ngZone = ngZone;
+                }
+            };
+        };
+    }])
+    .directive('thyModel', [function () {
         return {
             bindToController: {
                 thyModel: '='
             },
-            controller: ["$scope", "$element", "NgZone", "$timeout", function ($scope, $element, ngZone, $timeout) {
+            controller: ["$scope", "$element", "$timeout", "thyModelProvider", function ($scope, $element, $timeout, thyModelProvider) {
 
+                const _self = this;
                 let pendingDebounce = null;
                 const debounceDelay = 200;
-
-                ngZone.runOutsideAngular(() => {
-                    $element.on('keyup change blur', (event) => {
-                        this.$$debounceViewValueCommit();
-                    });
-                });
+                const ngZone = thyModelProvider.getNgZone();
 
                 this.$$debounceViewValueCommit = function () {
                     $timeout.cancel(pendingDebounce);
-                    pendingDebounce = $timeout(() => {
-                        this.thyModel = $element.val();
+                    pendingDebounce = $timeout(function () {
+                        _self.thyModel = $element.val();
                     }, debounceDelay);
                 };
 
-                $scope.$watch(() => {
-                    return this.thyModel;
-                }, (newValue, oldValue) => {
+                this.listen = function () {
+                    $element.on('keyup change blur', function (event) {
+                        _self.$$debounceViewValueCommit();
+                    });
+                };
+
+                if (ngZone) {
+                    ngZone.runOutsideAngular(function () {
+                        _self.listen();
+                    });
+                } else {
+                    _self.listen();
+                }
+
+                $scope.$watch(function () {
+                    return _self.thyModel;
+                }, function (newValue, oldValue) {
                     if (newValue !== $element.val()) {
                         $element.val(newValue);
                     }
                 });
             }]
         };
-    }])
+    }]);

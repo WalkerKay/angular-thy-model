@@ -1,6 +1,6 @@
 {
-  "name": "thy-model",
-  "version": "0.0.1",
+  "name": "angular-thy-model",
+  "version": "0.0.2",
   "description": "",
   "main": "src/thy-model.js",
   "scripts": {
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WalkerKay/thy-model.git"
+    "url": "git+https://github.com/WalkerKay/angular-thy-model.git"
   },
   "author": "walkerkay",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WalkerKay/thy-model/issues"
+    "url": "https://github.com/WalkerKay/angular-thy-model/issues"
   },
-  "homepage": "https://github.com/WalkerKay/thy-model#readme",
+  "homepage": "https://github.com/WalkerKay/angular-thy-model#readme",
   "devDependencies": {
     "webpack": "^3.7.1"
   }
