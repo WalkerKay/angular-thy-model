@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 angular.module("angular.thy.model", [])
     .provider('thyModelProvider', [function () {
-        const _self = this;
+        var _self = this;
         this.ngZone = null;
         this.$get = function () {
             return {
