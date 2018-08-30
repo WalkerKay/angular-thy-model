@@ -20,10 +20,10 @@ angular.module("angular.thy.model", [])
             },
             controller: ["$scope", "$element", "$timeout", "thyModelProvider", function ($scope, $element, $timeout, thyModelProvider) {
 
-                const _self = this;
-                let pendingDebounce = null;
-                const debounceDelay = 200;
-                const ngZone = thyModelProvider.getNgZone();
+                var _self = this;
+                var pendingDebounce = null;
+                var debounceDelay = 200;
+                var ngZone = thyModelProvider.getNgZone();
 
                 this.$$debounceViewValueCommit = function () {
                     $timeout.cancel(pendingDebounce);
