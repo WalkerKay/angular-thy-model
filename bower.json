@@ -1,9 +1,9 @@
 {
     "author": {
-        "name": "https://github.com/WalkerKay/angular-thy-model"
+        "name": "walkerkay"
     },
-    "name": "thy-model",
-    "version": "0.0.6",
+    "name": "angular-thy-model",
+    "version": "0.0.7",
     "keywords": [
         "ng-model",
         "angular"
