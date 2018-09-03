@@ -22,7 +22,7 @@ angular.module("angular.thy.model", [])
 
                 var _self = this;
                 var pendingDebounce = null;
-                var debounceDelay = 200;
+                var debounceDelay = 0;
                 var ngZone = thyModelProvider.getNgZone();
 
                 this.$$debounceViewValueCommit = function () {
